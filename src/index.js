@@ -1,41 +1,16 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-// const App = () => {
-
-//     );
-
-//     return <div>Latitude: </div>
-// }
-
 class App extends React.Component
 {
-    constructor(props)
-    {
-        super(props);
-
-        this.state = { lat: null, errorMessage: ''};
-        
-        window.navigator.geolocation.getCurrentPosition(
-            position =>
-            {
-                this.setState({ lat: position.coords.latitude });
-            },
-            err =>
-            { 
-                this.setState({ errorMessage: err.message });
-            }
-        );
-    }
+    state = { lat: null, errorMessage: '' };
 
     componentDidMount()
     {
-        console.log('My component was rendered to the screen')
-    }
-
-    componentDidUpdate()
-    {
-        console.log('My component was just updated')
+        window.navigator.geolocation.getCurrentPosition(
+            position => this.setState({ lat: position.coords.latitude }),
+            err => this.setState({ errorMessage: err.message })  
+        );
     }
 
     //React says we have to define render!!
